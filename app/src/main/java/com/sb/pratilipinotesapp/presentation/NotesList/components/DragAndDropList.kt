@@ -103,7 +103,7 @@ fun DragAndDropList(
                     .pointerInput(Unit) {
                     }
             ) {
-                NoteItem(note = item, onDeleteClick = { onDeleteClick(item) }, onNoteClick = {onNoteClick(item)})
+//                NoteItem(note = item, onDeleteClick = { onDeleteClick(item) }, onNoteClick = {onNoteClick(item)})
             }
         }
         item {

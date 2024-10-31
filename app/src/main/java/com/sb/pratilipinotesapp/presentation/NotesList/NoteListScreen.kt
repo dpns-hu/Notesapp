@@ -11,17 +11,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -62,7 +65,7 @@ fun NoteListScreen(
     activity.window.statusBarColor = backgroundArgb
     val reorderableLazyListState =
         rememberReorderableLazyListState(lazyListState) { from, to ->
-             val fromIndex = lazyListState.layoutInfo.visibleItemsInfo.indexOf(from)
+            val fromIndex = lazyListState.layoutInfo.visibleItemsInfo.indexOf(from)
             val toIndex = lazyListState.layoutInfo.visibleItemsInfo.indexOf(to)
 
             if (fromIndex >= 0 && toIndex >= 0) {
@@ -81,23 +84,23 @@ fun NoteListScreen(
             noteViewModel.getPagedNotes()
             view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_FREQUENT_TICK)
         }
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = "My Notes",
-                            style = MaterialTheme.typography.h5,
-                            modifier = Modifier.fillMaxWidth(),
-                            color = Color.White,
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
-                        )
-                    },
-                    backgroundColor = green,
-                    modifier = Modifier.statusBarsPadding()
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "My Notes",
+                        style = MaterialTheme.typography.h5,
+                        modifier = Modifier.fillMaxWidth(),
+                        color = Color.White,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    )
+                },
+                backgroundColor = green,
+                modifier = Modifier.statusBarsPadding()
 
-                )
-            },
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -184,14 +187,7 @@ fun NoteListScreen(
                                 ) { isDragging ->
                                     val elevation by animateDpAsState(if (isDragging) 4.dp else 0.dp)
 
-                                    Surface(modifier = Modifier.draggableHandle(
-                                        onDragStarted = {
-                                            view.performHapticFeedback(HapticFeedbackConstants.DRAG_START)
-                                        },
-                                        onDragStopped = {
-                                            view.performHapticFeedback(HapticFeedbackConstants.GESTURE_END)
-                                        }
-                                    ), shadowElevation = elevation) {
+                                    Surface(shadowElevation = elevation) {
                                         Row(
                                             modifier = Modifier.fillMaxWidth(),
                                             verticalAlignment = Alignment.CenterVertically
@@ -203,7 +199,8 @@ fun NoteListScreen(
                                                         Screen.AddEditNotesScreen.route +
                                                                 "?noteTitle=${note.title}&noteContent=${note.content}&noteId=${note.id}&notePosition=${note.position}"
                                                     )
-                                                })
+                                                }, scope = this@ReorderableItem)
+
                                         }
                                     }
                                 }
@@ -215,7 +212,6 @@ fun NoteListScreen(
         }
     }
 }
-
 
 
 
