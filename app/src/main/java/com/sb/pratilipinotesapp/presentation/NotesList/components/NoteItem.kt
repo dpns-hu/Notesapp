@@ -55,13 +55,13 @@ fun NoteItem(
 
             clipPath(clipPath) {
                 drawRoundRect(
-                    color = Color(0xFF6650a4),
+                    color = Color(0xFF03DAC5),
                     size = size,
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
                 drawRoundRect(
                     color = Color(
-                        ColorUtils.blendARGB(0xFF6650a4.toInt(), 0x000000, 0.2f)
+                        ColorUtils.blendARGB(0xFF03DAC5.toInt(), 0x000000, 0.2f)
                     ),
                     topLeft = Offset(size.width - cutCornerSize.toPx(), -100f),
                     size = Size(cutCornerSize.toPx() + 100f, cutCornerSize.toPx() + 100f),
