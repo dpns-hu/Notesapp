@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pratilipi Notes app</string>
+    <string name="app_name">Notes app</string>
     <string name="empty_notes_text">No notes available. Tap the + button to add a note!</string>
     <string name="addUpdateText">Add/Update Notes</string>
     <string name="title">Title</string>

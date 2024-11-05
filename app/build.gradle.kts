@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.sb.pratilipinotesapp"
+    namespace = "com.sb.deepnotesapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sb.pratilipinotesapp"
+        applicationId = "com.sb.deepnotesapp"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
